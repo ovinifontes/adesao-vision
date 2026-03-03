@@ -28,7 +28,9 @@ const DashboardFilters: React.FC<DashboardFiltersProps> = ({
 }) => {
   return (
     <div className="flex flex-wrap items-end gap-3 rounded-lg bg-card border p-4">
-      {filters.map(f => (
+      {filters.map(f => {
+        const validOptions = f.options.filter(o => o !== '' && o != null);
+        return (
         <div key={f.key} className="space-y-1">
           <label className="text-xs font-medium text-muted-foreground">{f.label}</label>
           <Select value={values[f.key] || 'all'} onValueChange={(v) => onChange(f.key, v)}>
@@ -37,11 +39,12 @@ const DashboardFilters: React.FC<DashboardFiltersProps> = ({
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="all">Todos</SelectItem>
-              {f.options.map(o => <SelectItem key={o} value={o}>{o}</SelectItem>)}
+              {validOptions.map(o => <SelectItem key={o} value={o}>{o}</SelectItem>)}
             </SelectContent>
           </Select>
         </div>
-      ))}
+        );
+      })}
       {onDateFromChange && (
         <div className="space-y-1">
           <label className="text-xs font-medium text-muted-foreground">De</label>
