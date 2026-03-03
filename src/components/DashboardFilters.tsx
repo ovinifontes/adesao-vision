@@ -39,11 +39,12 @@ const DashboardFilters: React.FC<DashboardFiltersProps> = ({
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="all">Todos</SelectItem>
-              {f.options.map(o => <SelectItem key={o} value={o}>{o}</SelectItem>)}
+              {validOptions.map(o => <SelectItem key={o} value={o}>{o}</SelectItem>)}
             </SelectContent>
           </Select>
         </div>
-      ))}
+        );
+      })}
       {onDateFromChange && (
         <div className="space-y-1">
           <label className="text-xs font-medium text-muted-foreground">De</label>
